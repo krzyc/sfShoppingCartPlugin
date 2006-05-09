@@ -191,10 +191,14 @@ class sfShoppingCartItem
    */
   public function setQuantity($quantity)
   {
-    if (!preg_match('~^\d+$~', $quantity)) 
+    if (!preg_match('~^\d+$~', $quantity))
+    {
       $this->quantity = 1;
+    }
     else
+    {
       $this->quantity = $quantity;
+    }
   }
 
   /**

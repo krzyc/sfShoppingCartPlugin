@@ -133,7 +133,15 @@ class sfShoppingCart
    */
   public function addItem($item)
   {
-    $this->items[] = $item;
+    $existingItem = $this->getItem($item->getClass(), $item->getId());
+    if ($existingItem)
+    {
+      $existingItem->addQuantity($item->getQuantity());
+    }
+    else
+    {
+      $this->items[] = $item;
+    }
   }
 
   /**
@@ -149,7 +157,9 @@ class sfShoppingCart
     foreach (array_keys($this->items) as $i)
     {
       if ($this->items[$i]->getClass() == $class && $this->items[$i]->getId() == $id)
+      {
         unset($this->items[$i]);
+      }
     }
   }
 
@@ -185,7 +195,9 @@ class sfShoppingCart
     $total_weight = 0;
 
     foreach ($this->getItems() as $item)
+    {
       $total_weight += $item->getQuantity() * $item->getWeight();
+    }
 
     return $total_weight;
   }
@@ -202,9 +214,13 @@ class sfShoppingCart
     foreach ($this->getItems() as $item)
     {
       if ($this->is_unit_price_ttc)
+      {
         $total_ht += $item->getQuantity() * $item->getPrice() * (1 - $item->getDiscount() / 100) / (1 + $this->tax / 100);
+      }
       else
+      {
         $total_ht += $item->getQuantity() * $item->getPrice() * (1 - $item->getDiscount() / 100);
+      }
     }
 
     return $total_ht;
@@ -224,9 +240,13 @@ class sfShoppingCart
     foreach ($this->getItems() as $item)
     {
       if ($this->is_unit_price_ttc)
+      {
         $total_ttc += $item->getQuantity() * $item->getPrice() * (1 - $item->getDiscount() / 100);
+      }
       else
+      {
         $total_ttc += $item->getQuantity() * $item->getPrice() * (1 - $item->getDiscount() / 100) * (1 + $this->tax / 100);
+      }
     }
 
     return $total_ttc;
@@ -243,7 +263,10 @@ class sfShoppingCart
     $items = array();
     foreach ($this->items as $item)
     {
-      if ($item->getQuantity() != 0) $items[] = $item;
+      if ($item->getQuantity() != 0)
+      {
+        $items[] = $item;
+      }
     }
 
     return $items;
@@ -305,7 +328,9 @@ class sfShoppingCart
     foreach ($this->getItems() as $item)
     {
       if (!array_key_exists($item->getClass(), $object_ids))
+      {
         $object_ids[$item->getClass()] = array();
+      }
 
       $object_ids[$item->getClass()][] = $item->getId();
     }
