@@ -275,10 +275,22 @@ class sfShoppingCart
   /**
    * Returns the number of items in the shopping cart.
    *
+   * @param boolean count the actual number of items instead of the number of items in the array.
    * @return integer
    */
-  public function getNbItems()
+  public function getNbItems($countQuantities = false)
   {
+    if ($countQuantities)
+    {
+      $itemCount = 0;
+      foreach ($this->items as $item)
+      {
+        $itemCount += $item->getQuantity();
+      }
+
+      return $itemCount;
+    }
+
     return count($this->getItems());
   }
 
@@ -316,7 +328,7 @@ class sfShoppingCart
     
     return (($ind !== null) ? call_user_func(array($class.'Peer', 'retrieveByPK'), $id) : null);
   }
-  
+
   /**
    * Returns an array of all Propel objects (items) in the shopping cart, ordered by class.
    *
