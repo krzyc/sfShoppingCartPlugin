@@ -1,13 +1,19 @@
-sfShoppingCartPlugin symfony plugin
-===================================
+= sfShoppingCartPlugin plugin =
 
-Overview
---------
+The `sfShoppingCartPlugin` manages a typical shopping cart.
 
-sfShoppingCart can manage a typical shopping cart.
+== Installation ==
 
-License
--------
+  * Install the plugin
+  
+  {{{
+    symfony plugin-install http://plugins.symfony-project.com/sfShoppingCartPlugin
+  }}}
 
-For the full copyright and license information, please view the LICENSE
-file that was distributed with this source code.
+  * Clear you cache
+
+  {{{
+    symfony cc
+  }}}
+
+  * You're done.
