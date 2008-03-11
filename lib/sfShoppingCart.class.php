@@ -213,13 +213,14 @@ class sfShoppingCart
 
     foreach ($this->getItems() as $item)
     {
+      $discount = $item->getDiscount() * -1;
       if ($this->is_unit_price_ttc)
       {
-        $total_ht += $item->getQuantity() * $item->getPrice() * (1 - $item->getDiscount() / 100) / (1 + $this->tax / 100);
+        $total_ht += $item->getQuantity() * $item->getPrice() + $discount / (1 + $this->tax / 100);
       }
       else
       {
-        $total_ht += $item->getQuantity() * $item->getPrice() * (1 - $item->getDiscount() / 100);
+        $total_ht += $item->getQuantity() * $item->getPrice() + $discount;
       }
     }
 
