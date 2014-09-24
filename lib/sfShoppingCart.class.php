@@ -9,12 +9,6 @@
  */
 
 /**
- * @package    symfony.runtime.addon
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id$
- */
-
-/**
  *
  * Shopping cart class.
  *

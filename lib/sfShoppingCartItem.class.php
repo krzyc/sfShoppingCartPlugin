@@ -9,12 +9,6 @@
  */
 
 /**
- * @package    symfony.runtime.addon
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id$
- */
-
-/**
  *
  * Shopping cart item class.
  *
@@ -26,7 +20,7 @@
  */
 class sfShoppingCartItem
 {
-  private
+  protected
     $quantity         = 0,
     $price            = 0,
     $discount         = 0,
